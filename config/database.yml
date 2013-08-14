@@ -1,0 +1,28 @@
+defaults: &defaults
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  username: postgres
+  password: postgres
+  schema_search_path: public
+  encoding: utf8
+  template: template0
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *defaults
+  database: cc_contact_sync_development
+
+test: &test
+  <<: *defaults
+  database: cc_contact_sync_test
+
+production:
+  <<: *defaults
+  database: cc_contact_sync_production
+
+
+
+cucumber:
+  <<: *test
