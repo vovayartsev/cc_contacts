@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-gem 'google-contacts'
+gem 'google-contacts', :git => 'https://github.com/Placester/google-contacts.git'
 gem 'omniauth-google-oauth2'
 gem 'slim-rails'
 
