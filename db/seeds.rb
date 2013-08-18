@@ -6,13 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create! :name            => "Ярцев Владимир",
-             :phone           => "+7 (927) 263-47-99",
-             :private_email   => "vovayartsev@gmail.com",
-             :corporate_email => "vlad.yartsev@cloudcastlegroup.com",
-             :skype           => "v-yartsev",
-             :birthday_string => "13 апреля",
-             :nickname        => "Vlad.Y"
-
-
-
+unless Rails.env.test?
+  User.create! :name            => "Ярцев Владимир",
+               :phone           => "+7 (927) 263-47-99",
+               :private_email   => "vovayartsev@gmail.com",
+               :corporate_email => "vlad.yartsev@cloudcastlegroup.com",
+               :skype           => "v-yartsev",
+               :birthday_string => "13 апреля",
+               :nickname        => "Vlad.Y"
+end

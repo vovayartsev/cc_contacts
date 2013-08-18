@@ -2,17 +2,3 @@
 
 h1 Contacts#index
 
-- if @users_to_add.any?
-
-  p В Вашу адресную книгу будут добавлены следующие контакты
-
-  table
-    - @users_to_add.each do |user|
-      tr
-        td = user.name
-        td = user.private_email
-        td = user.corporate_email
-
-- else
-
-  p Ваша адресная книга уже содержит контакты всех сотрудников

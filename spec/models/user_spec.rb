@@ -3,13 +3,7 @@ require 'spec_helper'
 
 describe User do
   before :each do
-    @user = User.create! :name            => "Ivan Ivanov",
-                         :phone           => "9272634799",
-                         :private_email   => "test1@vovayartsev.ru",
-                         :corporate_email => "vlad.yartsev@cloudcastlegroup.com",
-                         :skype           => "v-yartsev",
-                         :birthday_string => "13 апреля",
-                         :nickname        => "Vlad.Y"
+    @user = create :user
   end
 
   it "should generate google contact data" do
