@@ -7,6 +7,28 @@ class User < ActiveRecord::Base
   end
 
   def self.not_in_emails_list(known_emails)
-    scoped.reject { |u| u.private_email.in?(known_emails) or u.corporate_email.in?(known_emails) }
+    all.reject { |u| u.private_email.in?(known_emails) or u.corporate_email.in?(known_emails) }
+  end
+
+  def google_contact_data
+    {
+        "gd:name"        =>
+            [{"gd:fullName" => name}],
+
+        "gd:email"       =>
+            [{"@rel"     => "http://schemas.google.com/g/2005#work",
+              "@address" => corporate_email,
+              "@primary" => "true"},
+             {"@rel"     => "http://schemas.google.com/g/2005#home",
+              "@address" => private_email}],
+
+        "gd:im"          =>
+            [{"@address"  => skype,
+              "@protocol" => "http://schemas.google.com/g/2005#SKYPE",
+              "@rel"      => "http://schemas.google.com/g/2005#other"}],
+
+        "gd:phoneNumber" =>
+            [{"text" => phone, "@rel" => "http://schemas.google.com/g/2005#mobile"}]
+    }
   end
 end
