@@ -17,8 +17,14 @@ class ContactsService
     end.flatten
   end
 
-  def list_groups
-    binding.pry
+  def create_contact(data)
+    contact = GContact::Element.new
+    contact.data = data
+    @client.create! contact
   end
+
+  #def list_groups
+  #  binding.pry
+  #end
 
 end

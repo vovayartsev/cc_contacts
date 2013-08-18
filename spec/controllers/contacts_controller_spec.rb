@@ -32,5 +32,12 @@ describe ContactsController do
     assigns(:users_to_add).should == [@user]
   end
 
+  it 'should create contacts for user_id passed' do
+    dummy_contact_hash = {dummy_contact: true}
+    User.any_instance.should_receive(:google_contact_data).and_return(dummy_contact_hash.dup)
+    expect(@controller.contacts_service).to receive(:create_contact).with(dummy_contact_hash.dup)
+    xhr :post, :create, :user_id => @user.id
+    response.should be_success
+  end
 
 end
