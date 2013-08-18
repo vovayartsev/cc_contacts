@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ->
+    $placeholder = $("#contacts_form_placeholder")
+    if $placeholder.length
+        # loading the new contacts form content dynamically with AJAX
+        $.get $placeholder.data('href'), (data) ->
+            $placeholder.html data
+

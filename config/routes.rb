@@ -2,8 +2,7 @@ ContactSync::Application.routes.draw do
 
   root 'contacts#index'
 
-  get "contacts/index"
-  get "contacts/new"
+  resources :contacts
 
   get "auth/google_oauth2/callback" => "sessions#create"
   get "login" => "sessions#new", :as => :login
