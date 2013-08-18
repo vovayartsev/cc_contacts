@@ -2,7 +2,7 @@
 
   p В Вашу адресную книгу будут добавлены следующие контакты
 
-  table
+  table data-user-ids=@users_to_add.map(&:id)
     - @users_to_add.each do |user|
       tr
         td = user.name

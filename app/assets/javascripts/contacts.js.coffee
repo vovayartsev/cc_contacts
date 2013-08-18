@@ -4,4 +4,7 @@ jQuery ->
         # loading the new contacts form content dynamically with AJAX
         $.get $placeholder.data('href'), (data) ->
             $placeholder.html data
+            userIds = $placeholder.find("table").data("user-ids")
+#            alert userIds
+
 
