@@ -19,4 +19,9 @@ class ContactsController < ApplicationController
     head 201
   end
 
+  def debug
+    binding.pry
+    render :json => {}# contacts_service.all_groups.to_a
+  end
+
 end
