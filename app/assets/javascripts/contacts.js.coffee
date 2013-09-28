@@ -5,6 +5,5 @@ jQuery ->
         $.get $placeholder.data('href'), (data) ->
             $placeholder.html data
             userIds = $placeholder.find("table").data("user-ids")
-#            alert userIds
 
 

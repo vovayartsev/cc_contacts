@@ -11,6 +11,8 @@ ContactSync::Application.routes.draw do
   get "auth/google_oauth2/callback" => "sessions#create"
   get "login" => "sessions#new", :as => :login
 
+  get "login/fake" => "sessions#fake", :as => :fake_login
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
