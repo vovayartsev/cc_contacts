@@ -1,0 +1,21 @@
+{
+  "name": "contacts_sync",
+  "version": "1.0.0",
+  "authors": [
+    "Vladimir Yartsev <vovayartsev@gmail.com>"
+  ],
+  "main": "components.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.0.3",
+    "angular": "1.2.0-rc.2"
+  }
+}
