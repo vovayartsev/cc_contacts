@@ -16,3 +16,4 @@
 /tmp
 .env
 .idea
+/vendor/assets/javascripts/*/test/*

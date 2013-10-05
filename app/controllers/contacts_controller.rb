@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
 
-  respond_to :html
+  respond_to :html, except: :available
+  respond_to :json, only: :available
 
   # index action dynamically loads :new action page via JS
   def index
@@ -11,6 +12,11 @@ class ContactsController < ApplicationController
     known_emails = []; sleep 3
     @users_to_add = User.not_in_emails_list(known_emails)
     render :layout => false if request.xhr?
+  end
+
+  def available
+    known_emails = []; sleep 3
+    respond_with User.not_in_emails_list(known_emails)
   end
 
   def create

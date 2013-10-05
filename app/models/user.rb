@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
             [{"text" => phone, "@rel" => "http://schemas.google.com/g/2005#mobile"}]
     }
   end
+
+  def as_json(*args)
+    super(*args).reject { |k, _| k.in? %w"updated_at created_at" }
+  end
 end

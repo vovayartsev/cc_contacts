@@ -4,6 +4,7 @@
   "authors": [
     "Vladimir Yartsev <vovayartsev@gmail.com>"
   ],
+  "appPath": "javascripts",
   "main": "components.js",
   "license": "MIT",
   "private": true,
@@ -12,10 +13,14 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "*.min.js",
+    "*.min.map"
   ],
   "dependencies": {
     "jquery": "2.0.3",
-    "angular": "1.2.0-rc.2"
+    "angular": "1.2.0-rc.2",
+    "jquery-ujs": "*",
+    "angular-resource": "1.2.0-rc.2"
   }
 }

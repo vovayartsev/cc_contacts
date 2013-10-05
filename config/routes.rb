@@ -5,6 +5,7 @@ ContactSync::Application.routes.draw do
   resources :contacts do
     collection do
       get :debug
+      get :available
     end
   end
 

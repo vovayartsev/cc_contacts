@@ -20,11 +20,13 @@ gem 'google-contacts', :git => 'https://github.com/Placester/google-contacts.git
 gem 'omniauth-google-oauth2'
 gem 'slim-rails'
 
+#gem 'ruby-bower'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+#gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
