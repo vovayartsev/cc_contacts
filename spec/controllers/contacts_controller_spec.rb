@@ -18,16 +18,16 @@ describe ContactsController do
   end
 
 
-  it "should provide 'new' partial for the case when nothing to add" do
+  it "should render available contacts list when nothing to add" do
     expect(@controller.contacts_service).to receive(:known_emails).and_return([@user.private_email])
-    xhr :get, :new
+    xhr :get, :available
     response.should be_success
     assigns(:users_to_add).should == []
   end
 
-  it "should provide 'new' partial for the case when there's 1 user to add" do
+  it "should render available contacts list when there's 1 user to add" do
     expect(@controller.contacts_service).to receive(:known_emails).and_return([])
-    xhr :get, :new
+    xhr :get, :available
     response.should be_success
     assigns(:users_to_add).should == [@user]
   end
@@ -36,7 +36,7 @@ describe ContactsController do
     dummy_contact_hash = {dummy_contact: true}
     User.any_instance.should_receive(:google_contact_data).and_return(dummy_contact_hash.dup)
     expect(@controller.contacts_service).to receive(:create_contact).with(dummy_contact_hash.dup)
-    xhr :post, :create, :user_id => @user.id
+    xhr :post, :import, :id => @user.id
     response.should be_success
   end
 

@@ -1,8 +1,9 @@
-angular.module('app').controller "ContactsTableCtrl", [ '$scope', 'Contact',  ($scope, Contact) ->
+class ContactsTableCtrl
+    constructor: ($scope, Contact) ->
+        @loading = true
 
-    $scope.loading = true
+        @available = Contact.available =>
+            @loading = false
 
-    $scope.availableContacts = Contact.available ->
-        $scope.loading = false
-
-]
+angular.module('app').controller "ContactsTableCtrl", ContactsTableCtrl
+ContactsTableCtrl.$inject = ['$scope', 'Contact'];

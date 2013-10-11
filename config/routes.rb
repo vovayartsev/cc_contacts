@@ -2,10 +2,13 @@ ContactSync::Application.routes.draw do
 
   root 'contacts#index'
 
-  resources :contacts do
+  resources :contacts, :only => [:show, :index] do
     collection do
       get :debug
       get :available
+    end
+    member do
+      post :import
     end
   end
 

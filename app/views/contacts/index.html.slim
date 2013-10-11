@@ -2,22 +2,24 @@
 
 h1 Contacts#index
 
-.js-contacts-table(ng-controller="ContactsTableCtrl")
+.js-contacts-table(ng-controller="ContactsTableCtrl as contacts")
 
-  #contacts_table_placeholder ng-show="loading"
+  #contacts_table_placeholder ng-show="contacts.loading"
     p Идет сканирование Вашей адресной книги...
 
-  #contacts_table_wrapper ng-show="!loading"
+  #contacts_table_wrapper ng-show="!contacts.loading"
 
-    p ng-show="availableContacts.length == 0" Ваша адресная книга уже содержит контакты всех сотрудников
+    p ng-show="contacts.available.length == 0" Ваша адресная книга уже содержит контакты всех сотрудников
 
-    div ng-show="availableContacts.length > 0"
+    div ng-show="contacts.available.length > 0"
       p Вашу адресную книгу в группу Co-Workers будут добавлены перечисленные ниже контакты. У существующих контактов будет обновлен телефон.
 
       button id="start-import" ng-click="startImport()" Начать импорт
 
       table
-        tr ng-repeat="user in availableContacts"
+        tr ng-repeat="user in contacts.available"
+          td
+            span = "{{user.imported}}"
           td = "{{user.name}}"
           td = "{{user.private_email}}"
           td = "{{user.corporate_email}}"
