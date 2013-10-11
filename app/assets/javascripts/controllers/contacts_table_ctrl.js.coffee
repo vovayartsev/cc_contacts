@@ -1,9 +1,19 @@
 class ContactsTableCtrl
     constructor: ($scope, Contact) ->
-        @loading = true
+        @available = Contact.available()
 
-        @available = Contact.available =>
-            @loading = false
+    startImport: ->
+        @importing = true
+        @importedCount = 0
 
-angular.module('app').controller "ContactsTableCtrl", ContactsTableCtrl
+    # process status
+
+    isLoading: ->
+        ! @available.$resolved
+
+    isImporting: ->
+        !! @importing
+
+# registering controller in Angular framework
 ContactsTableCtrl.$inject = ['$scope', 'Contact'];
+angular.module('app').controller "ContactsTableCtrl", ContactsTableCtrl

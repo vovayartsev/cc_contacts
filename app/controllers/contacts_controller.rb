@@ -7,8 +7,8 @@ class ContactsController < ApplicationController
   end
 
   def available
-    known_emails = contacts_service.known_emails
-    #known_emails = []; sleep 3
+    #known_emails = contacts_service.known_emails
+    known_emails = []; sleep 3
     @users_to_add = User.not_in_emails_list(known_emails)
     respond_with @users_to_add
   end
