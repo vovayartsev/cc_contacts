@@ -36,7 +36,7 @@ describe ContactsController do
     dummy_contact_hash = {dummy_contact: true}
     User.any_instance.should_receive(:google_contact_data).and_return(dummy_contact_hash.dup)
     expect(@controller.contacts_service).to receive(:create_contact).with(dummy_contact_hash.dup)
-    xhr :post, :import, :id => @user.id
+    xhr :post, :import, :id => @user.id, :format => :json
     response.should be_success
   end
 

@@ -4,7 +4,7 @@ angular.module("app").factory "Contact", [ "$resource", ($resource) ->
         'available': {method: 'GET', url: "/contacts/available.json", isArray: true}
     }
 
-    $resource "/contacts/:id.json", {}, actions
+    $resource "/contacts/:id.json", {id: "@id"}, actions
 ]
 
 

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessor :imported
+
   def self.first_by_any_email(email)
     email.gsub! /%/, '' # for security reason
     c1 = arel_table[:private_email].matches(email)
@@ -33,6 +35,6 @@ class User < ActiveRecord::Base
   end
 
   def as_json(*args)
-    super(*args).reject { |k, _| k.in? %w"updated_at created_at" }
+    super(*args).reject { |k, _| k.in? %w"updated_at created_at" }.merge(imported: @imported)
   end
 end

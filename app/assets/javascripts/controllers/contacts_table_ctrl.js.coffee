@@ -8,22 +8,15 @@ class ContactsTableCtrl
     importOne: =>
         contact = @nextContact()
         if contact
-            console.log contact
             @importedCount += 1
-
-        # returning true if we should schedule next timeout
-        !! @nextContact()
+            contact.$import().then => @importOne()
+        else
+            console.log "DONE!!!"
 
     startImport: ->
         @importing = true
         @importedCount = 0
-
-        countdownFn = (hasNext) =>
-            @timeout(@importOne).then(countdownFn) if hasNext
-
-        # starting countdown
-        countdownFn(true)
-
+        @importOne()
 
 
     # process status
