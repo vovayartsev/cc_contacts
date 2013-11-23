@@ -19,8 +19,8 @@
   ],
   "dependencies": {
     "jquery": "2.0.3",
-    "angular": "1.2.0-rc.2",
+    "angular": "1.2.2",
     "jquery-ujs": "*",
-    "angular-resource": "1.2.0-rc.2"
+    "angular-resource": "1.2.2"
   }
 }
