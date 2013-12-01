@@ -43,6 +43,8 @@ gem 'kgio'
 # Serve static assets through Rack + Memcache
 # https://devcenter.heroku.com/articles/rack-cache-memcached-rails31
 gem 'rack-cache'
+gem "font-awesome-rails"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

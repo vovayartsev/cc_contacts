@@ -49,7 +49,7 @@
     tbody
       tr ng-repeat="user in contacts.available"
         td
-          span.glyphicon.glyphicon-ok-sign ng-show="user.imported"
+          = fa_icon "check", 'ng-show' => "user.imported"
         td = "{{user.name}}"
         td = "{{user.phone}}"
         td = "{{user.private_email}}"
