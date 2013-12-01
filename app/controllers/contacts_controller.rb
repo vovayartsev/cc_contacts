@@ -7,12 +7,14 @@ class ContactsController < ApplicationController
   end
 
   def available
-    if fake?
+    if fake? # debug
       known_emails = []; sleep 3
     else
       known_emails = contacts_service.known_emails
     end
-    @users_to_add = User.not_in_emails_list(known_emails)
+    users = User.order(:name)
+    users = users.limit(ENV['LIMIT']) if ENV['LIMIT'].present? # debug
+    @users_to_add = users.not_in_emails_list(known_emails)
     respond_with @users_to_add
   end
 

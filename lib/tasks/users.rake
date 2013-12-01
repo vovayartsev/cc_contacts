@@ -11,7 +11,7 @@ namespace :users do
       User.delete_all
       page.css(".wiki-content table:first tr").each do |tr|
         name, phone, private_email, corporate_email, nickname, skype, birthday_string = tr.css("td").map(&:text)
-        corporate_email = "#{corporate_email}@cloudcastlegroup.com" unless corporate_email =~ /cloudcastlegroup/
+        corporate_email = "#{corporate_email.strip}@cloudcastlegroup.com" if corporate_email.present? and corporate_email !~ /cloudcastlegroup/
         if name.present?
           User.create!(
               name:     name, phone: phone, private_email: private_email, corporate_email: corporate_email,
