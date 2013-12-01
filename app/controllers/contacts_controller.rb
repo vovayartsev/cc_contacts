@@ -35,7 +35,11 @@ class ContactsController < ApplicationController
   private
 
   def fake?
-    Rails.env.development? || ENV['FAKE'] == 'YES'
+    if ENV['FAKE'].present?
+      ENV['FAKE'] == 'YES'
+    else
+      Rails.env.development?
+    end
   end
 
 end

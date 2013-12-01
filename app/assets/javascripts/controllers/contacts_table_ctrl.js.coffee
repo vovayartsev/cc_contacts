@@ -1,5 +1,5 @@
 class ContactsTableCtrl
-    constructor: (Contact, @timeout) ->
+    constructor: (Contact) ->
         @available = Contact.available()
 
     nextContact: ->
@@ -9,25 +9,25 @@ class ContactsTableCtrl
         contact = @nextContact()
         if contact
             @importedCount += 1
-            contact.$import().then => @importOne()
+            contact.$import().then =>
+                @importOne()
         else
             @importing = false
             @finished = true
-            console.log "DONE!!!"
 
     startImport: ->
         @importing = true
         @importedCount = 0
-        @importOne()
+        @importOne() for [1..5]  # multithreading
 
 
     # process status
 
     isLoading: ->
-        ! @available.$resolved
+        !@available.$resolved
 
     isImporting: ->
-        !! @importing
+        !!@importing
 
     hasToImport: ->
         @available.$resolved && @available.length > 0
@@ -36,5 +36,5 @@ class ContactsTableCtrl
         !!@finished
 
 # registering controller in Angular framework
-ContactsTableCtrl.$inject = ['Contact', '$timeout'];
+ContactsTableCtrl.$inject = ['Contact'];
 angular.module('app').controller "ContactsTableCtrl", ContactsTableCtrl

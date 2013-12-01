@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :imported
+  validates_presence_of :name, :private_email, :phone
 
   def self.first_by_any_email(email)
     email.gsub! /%/, '' # for security reason
