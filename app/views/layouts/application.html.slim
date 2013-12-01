@@ -1,0 +1,41 @@
+doctype html
+
+head
+  meta charset="utf-8"
+  meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+  title= "Contacts Sync"
+  = stylesheet_link_tag    "application.css", media: "all"
+  = javascript_include_tag "application.js"
+  = csrf_meta_tag
+
+body ng-app="app"
+  .container
+
+    .header
+      ul.nav.nav-pills.pull-right
+        li.active = link_to "CC Contacts", root_path
+        li = link_to "CC Wiki", "http://wiki.cloudcastlegroup.ru/wiki"
+        li == avatar_image_tag
+
+      h3.text-muted CC Contacts
+
+    #main role="main"
+      section.main
+        .inner-section-main
+          - if notice or alert
+            .bh-form
+              .bh-group
+                - if notice
+                  .notice-message= notice
+                - if alert
+                  .alert-message= alert
+          = yield
+
+      aside.main
+        .inner-aside-main
+
+    /footer.website
+    /  .inner-footer-website
+    /    '&copy; Company., 2011.  All rights reserved.  &copy; All rights reserved.
+
+

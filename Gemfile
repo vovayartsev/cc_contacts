@@ -34,6 +34,16 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+
+gem 'memcachier'
+gem 'dalli'
+# Fast IO for memcache
+gem 'kgio'
+
+# Serve static assets through Rack + Memcache
+# https://devcenter.heroku.com/articles/rack-cache-memcached-rails31
+gem 'rack-cache'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -43,6 +53,14 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
+
+group :production do
+  # Enable gzip compression on heroku, but don't compress images.
+  gem 'heroku-deflater'
+
+  # Heroku injects it if it's not in there already
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password

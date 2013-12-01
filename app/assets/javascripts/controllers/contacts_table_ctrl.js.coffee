@@ -11,6 +11,8 @@ class ContactsTableCtrl
             @importedCount += 1
             contact.$import().then => @importOne()
         else
+            @importing = false
+            @finished = true
             console.log "DONE!!!"
 
     startImport: ->
@@ -26,6 +28,12 @@ class ContactsTableCtrl
 
     isImporting: ->
         !! @importing
+
+    hasToImport: ->
+        @available.$resolved && @available.length > 0
+
+    importFinished: ->
+        !!@finished
 
 # registering controller in Angular framework
 ContactsTableCtrl.$inject = ['Contact', '$timeout'];

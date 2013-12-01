@@ -1,6 +1,7 @@
-h1 Авторизация
+.jumbotron
+  h1 Синхронизация контактов
 
-p Авторизуйтесь через аккаунт Google.
-  В этот аккаунт будут добавлены контакты, перечиленные в WiKi.
+  p.lead
+    | Авторизуйтесь через аккаунт Google. В этот аккаунт будут добавлены номера телефонов и email'ы из Cloud WiKi
 
-p== link_to "Авторизация...", "/auth/google_oauth2"
+  p= link_to "Авторизоваться &raquo;".html_safe, "/auth/google_oauth2", class: 'btn btn-lg btn-success'

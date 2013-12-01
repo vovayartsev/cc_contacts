@@ -20,7 +20,22 @@ ContactSync::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
+
+  # Set static assets cache header. rack-cache will cache those.
+  config.static_cache_control = "public, max-age=31536000"
+
+  config.cache_store = :dalli_store
+
+  client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
+                             :value_max_bytes => 10485760,
+                             :expires_in => 1.day)
+
+  # Configure rack-cache for using memcachier
+  config.action_dispatch.rack_cache = {
+    :metastore    => client,
+    :entitystore  => client
+  }
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier

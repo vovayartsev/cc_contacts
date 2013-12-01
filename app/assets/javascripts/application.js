@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery-ujs/src/rails.js
-//= require turbolinks
+//= require bootstrap
 
 //= require angular
 //= require angular-resource
@@ -20,3 +20,9 @@
 //= require angular_app
 //= require_tree ./services
 //= require_tree ./controllers
+
+
+
+// NOT USED
+
+// require turbolinks
