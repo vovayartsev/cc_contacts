@@ -1,45 +1,40 @@
 .js-contacts-table(ng-controller="ContactsTableCtrl as contacts")
 
-  .jumbotron ng-show="contacts.isLoading()"
-    h1
-      | Сканирование
-      = image_tag "spinner.gif", class: 'spinner'
-    p.lead Идет сканирование Вашей адресной книги...
+  // Below is a state-machine
+  .jumbotron ng-switch="contacts.state()"
+
+    div ng-switch-when="scanning"
+      h1
+        | Сканирование
+        = image_tag "spinner.gif", class: 'spinner'
+      p.lead Идет сканирование Вашей адресной книги...
+
+    div ng-switch-when="nothing_to_import"
+      h1 Ура!!!
+      p.lead Ваша адресная книга уже содержит все контакты
+
+    div ng-switch-when="waiting_for_decision"
+      h1 Импортируем?
+      p.lead
+        | В Вашу адресную книгу в группу <strong>Co-Workers</strong> будут добавлены
+        |  перечисленные ниже контакты.
+        -# У существующих контактов будет только обновлен телефон.
+      p
+        button.btn.btn-lg.btn-primary ng-click="contacts.startImport()" Начать импорт &raquo
+
+    div ng-switch-when="importing"
+      h1
+        | Идет импорт
+        = image_tag "spinner.gif", class: 'spinner'
+      p.lead Импортируется контакт: {{contacts.importedCount}} из {{contacts.available.length}}
+
+    div ng-switch-when="finished"
+      h1 Ура!!!
+      p.lead Импорт завершен
 
 
 
-  .jumbotron ng-show="!contacts.hasToImport() && !contacts.isLoading() && !contacts.isImporting()"
-    h1 Ура!!!
-    p.lead Ваша адресная книга уже содержит все контакты
-
-
-
-  .jumbotron ng-show="contacts.hasToImport() && !contacts.isImporting() && !contacts.importFinished()"
-    h1 Импортируем?
-    p.lead
-      | В Вашу адресную книгу в группу <strong>Co-Workers</strong> будут добавлены
-      |  перечисленные ниже контакты.
-      -# У существующих контактов будет только обновлен телефон.
-    p
-      button.btn.btn-lg.btn-primary ng-click="contacts.startImport()" Начать импорт &raquo
-
-
-
-  .jumbotron ng-show="contacts.isImporting()"
-    h1
-      | Идет импорт
-      = image_tag "spinner.gif", class: 'spinner'
-    p.lead Импортируется контакт: {{contacts.importedCount}} из {{contacts.available.length}}
-
-
-
-  .jumbotron ng-show="contacts.importFinished()"
-    h1 Ура!!!
-    p.lead Импорт завершен
-
-
-
-  table.table ng-show="contacts.hasToImport()"
+  table.table ng-show="contacts.available.length"
     thead
       th width="30px"
       th ФИО

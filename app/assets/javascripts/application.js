@@ -14,6 +14,8 @@
 //= require jquery-ujs/src/rails.js
 //= require bootstrap
 
+//= require javascript-state-machine/state-machine
+
 //= require angular
 //= require angular-resource
 
@@ -22,7 +24,5 @@
 //= require_tree ./controllers
 
 
-
 // NOT USED
-
 // require turbolinks
