@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    name "Ivan Ivanov"
+    name "Vladimir Yartsev"
     phone "9272634799"
     private_email "test1@vovayartsev.ru"
     corporate_email "vlad.yartsev@cloudcastlegroup.com"

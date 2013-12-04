@@ -9,7 +9,7 @@ describe User do
   it "should generate google contact data" do
     @user.google_contact_data.should == {
         "gd:name"        =>
-            [{"gd:fullName"   => "Ivan Ivanov"}],
+            [{"gd:fullName"   => "Vladimir Yartsev"}],
 
         "gd:email"       =>
             [{"@rel"     => "http://schemas.google.com/g/2005#work",

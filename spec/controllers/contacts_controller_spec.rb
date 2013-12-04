@@ -7,7 +7,7 @@ describe ContactsController do
     @user                                 = create :user
     session[:user_id]                     = @user.id
     session[:user_email]                  = @user.corporate_email
-    session[:avatar_url]                  = "/favicon.ico"
+    session[:avatar_url]                  = "/favicon.png"
     session[:google_api_token]            = "<dummy token>"
     session[:google_api_token_expires_at] = 1.hour.since.to_i
   end
