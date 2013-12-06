@@ -11,6 +11,7 @@ ContactSync::Application.routes.draw do
   end
 
   get "auth/google_oauth2/callback" => "sessions#create"
+  get "auth/failure" => "sessions#auth_failure", :as => :auth_failure
   get "login" => "sessions#new", :as => :login
 
   # to help establish session in dev environment

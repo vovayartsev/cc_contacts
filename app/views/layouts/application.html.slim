@@ -15,9 +15,10 @@ body ng-app="app"
     .header
       ul.nav.nav-pills.pull-right
         li.active = link_to "CC Contacts", root_path
-        li = link_to "CC Wiki", "http://wiki.cloudcastlegroup.ru/wiki"
-        li = avatar_image_tag
-        li.change-account = change_account_link
+        li = link_to_cc_wiki
+        - if user_logged_in?
+          li = avatar_image_tag
+          li.change-account = change_account_link
 
       h3.text-muted CC Contacts
 

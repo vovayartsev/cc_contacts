@@ -1,0 +1,7 @@
+.jumbotron
+  h1 Авторизация не удалась
+
+  p.lead
+    | Проверьте, что Ваш email есть в списке email'ов в #{link_to_cc_wiki}
+
+  p= link_to "Авторизоваться снова &raquo;".html_safe, google_auth_path, class: 'btn btn-lg btn-success'
