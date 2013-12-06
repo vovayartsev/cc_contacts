@@ -1,10 +1,8 @@
-class SessionsController < ActionController::Base
+class SessionsController < ApplicationController
   protect_from_forgery with: :null_session
-
-  layout 'application'
+  skip_before_filter :authorize_with_google!
 
   def new
-
   end
 
   def fake
@@ -12,7 +10,7 @@ class SessionsController < ActionController::Base
     user                                  = User.first
     session[:user_id]                     = user.id
     session[:user_email]                  = user.private_email
-    session[:avatar_url]                  = "/favicon.ico"
+    session[:avatar_url]                  = "/favicon.png"
     session[:google_api_token]            = "XXXXXXXXXXXXXX"
     session[:google_api_token_expires_at] = 5.hours.since.to_i
     redirect_to root_path

@@ -1,3 +1,5 @@
 ru:
+  menu:
+    change_account: "Сменить\nаккаунт"
   sessions:
     email_not_found: "Ваш email не найден на страниые WiKi 'Сотрудники'"

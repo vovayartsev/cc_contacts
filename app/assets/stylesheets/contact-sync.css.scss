@@ -28,6 +28,16 @@ body {
   font-weight: bold;
 }
 
+.header li.change-account a {
+  font-size: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .container .jumbotron {
   text-align: center;
 

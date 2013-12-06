@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
 
-  respond_to :html, except: :available
+  respond_to :html, only: [:index]
   respond_to :json, only: [:available, :import]
 
   def index
@@ -27,11 +27,6 @@ class ContactsController < ApplicationController
     end
     user.imported = true
     respond_with user, :location => false
-  end
-
-  def debug
-    binding.pry
-    render :json => {} # contacts_service.all_groups.to_a
   end
 
   private
