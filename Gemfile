@@ -46,7 +46,7 @@ gem 'rack-cache'
 gem "font-awesome-rails"
 
 gem 'rollbar'
-
+gem 'retriable'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

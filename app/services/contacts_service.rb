@@ -4,7 +4,7 @@ class ContactsService
 
   def initialize(token)
     @token_md5 = Digest::MD5.hexdigest(token) # for caching purpose
-    @client = GContacts::Client.new(access_token: token)
+    @client    = GContacts::Client.new(access_token: token)
   end
 
   def all_entries
@@ -21,14 +21,15 @@ class ContactsService
   end
 
   def create_contact(data)
-    contact = GContacts::Element.new
-    contact.data = data
+    result           = nil
+    contact          = GContacts::Element.new
+    contact.data     = data
     contact.category = "contact" # aka API type (contacts vs groups)
-    result = @client.create! contact
+    with_retry { result = @client.create! contact }
     # putting the contact into 'Coworkers' group
     result.group_id = coworkers_group_id
     result.update
-    client.batch!([result])
+    with_retry { client.batch!([result]) }
   end
 
 
@@ -38,6 +39,12 @@ class ContactsService
 
   private
 
+  def with_retry
+    Retriable.retriable interval: 1, timeout: 3 do
+      yield
+    end
+  end
+
   def all_groups
     Enumerator.new do |y|
       @client.paginate_all(api_type: :groups) { |entry| y << entry }
@@ -46,7 +53,7 @@ class ContactsService
 
   def coworkers_group_id
     @coworkers_group_id ||= Rails.cache.fetch([:coworkers_group_id, @token_md5]) do
-      all_groups.select{|g| g.title == "System Group: Coworkers"}.first.try(:id)
+      all_groups.select { |g| g.title == "System Group: Coworkers" }.first.try(:id)
     end
   end
 
