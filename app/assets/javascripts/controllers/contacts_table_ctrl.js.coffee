@@ -37,7 +37,7 @@ class ContactsTableCtrl
     startImport: ->
         @stateMachine.start()
         @importedCount = 0
-        @runningThreads = 5
+        @runningThreads = 3
         @importOne() for [1..@runningThreads] # multithreading
 
 

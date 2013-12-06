@@ -40,7 +40,7 @@ class ContactsService
   private
 
   def with_retry
-    Retriable.retriable interval: 1, timeout: 3 do
+    Retriable.retriable interval: 1, timeout: 5, tries: 5  do
       yield
     end
   end
